@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formas de Onda - Frequências Vibrotáteis</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: sans-serif; }
+    .wave { stroke: black; stroke-width: 2; fill: none; }
+    .label { font-size: 12px; text-anchor: end; }
+    .axis path, .axis line { stroke: #ccc; }
+  </style>
+</head>
+<body>
+  <h2>Visualização de Formas de Onda para Frequências Vibrotáteis (0–1000 ms)</h2>
+  <svg id="waveform" width="1000" height="400"></svg>
+
+  <script>
+    const svg = d3.select("#waveform");
+    const width = +svg.attr("width");
+    const height = +svg.attr("height");
+    const duration = 1000; // ms
+    const frequencies = [5, 10, 20, 40, 80, 120, 150];
+
+    const margin = {top: 20, right: 20, bottom: 20, left: 60};
+    const innerHeight = height - margin.top - margin.bottom;
+    const rowHeight = innerHeight / frequencies.length;
+
+    const xScale = d3.scaleLinear().domain([0, duration]).range([margin.left, width - margin.right]);
+
+    frequencies.forEach((freq, i) => {
+      const y = margin.top + i * rowHeight;
+      const period = 1000 / freq; // in ms
+      let data = [];
+      for (let t = 0; t <= duration; t += period) {
+        data.push([t, 1]);
+        data.push([t + period / 2, 1]);
+        data.push([t + period / 2, 0]);
+        data.push([t + period, 0]);
+      }
+
+      const line = d3.line()
+        .x(d => xScale(d[0]))
+        .y(d => y + (1 - d[1]) * (rowHeight * 0.6));
+
+      svg.append("path")
+        .datum(data)
+        .attr("class", "wave")
+        .attr("d", line);
+
+      svg.append("text")
+        .attr("x", margin.left - 10)
+        .attr("y", y + rowHeight / 2)
+        .attr("dy", "0.35em")
+        .attr("class", "label")
+        .text(freq + " Hz");
+    });
+
+    // Adiciona eixo X
+    const xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d => d + " ms");
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(xAxis);
+  </script>
+</body>
+</html>
