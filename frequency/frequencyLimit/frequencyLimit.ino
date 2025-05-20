@@ -290,9 +290,6 @@ void executarTarefaComparacaoPareada(int ensaio) {
 }
 
 
-
-
-
 void setup() {
   Serial.begin(115200);
   pinMode(motorAjuste, OUTPUT);
