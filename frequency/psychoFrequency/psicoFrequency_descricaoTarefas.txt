@@ -1,0 +1,69 @@
+# Descrição das Tarefas do Algoritmo - Experimento Vibrotátil
+
+Este experimento psicofísico utiliza motores vibratórios controlados por Arduino para realizar quatro tarefas perceptivas, baseadas em diferentes estratégias de ajuste e comparação. Abaixo, estão descritas cada uma das tarefas implementadas no código.
+
+---
+
+## Tarefa A - Ajuste Crescente de Frequência
+
+- **Objetivo:** Identificar a menor frequência perceptível de vibração.
+- **Procedimento:** O participante inicia com uma frequência aleatória (55–65 Hz) e utiliza dois botões para aumentar ou diminuir a frequência até identificar o limiar de percepção.
+- **Botões utilizados:**
+  - `botaoMais` (porta 43): aumenta a frequência.
+  - `botaoMenos` (porta 39): diminui a frequência.
+  - `botaoConfirma` (porta 35): confirma o valor perceptível.
+- **Saída serial:** Frequência atual, tempo de resposta e número de ajustes até confirmação.
+
+---
+
+## Tarefa B - Ajuste Decrescente de Frequência
+
+- **Objetivo:** Identificar a frequência limiar por uma aproximação decrescente.
+- **Procedimento:** O participante começa com uma frequência alta (90–110 Hz) e reduz até perceber o ponto onde a vibração deixa de ser detectável.
+- **Controles idênticos à Tarefa A.**
+
+---
+
+## Tarefa C - Ajuste Máximo Perceptível
+
+- **Objetivo:** Identificar a frequência máxima em que a vibração ainda é discriminável sem desconforto.
+- **Procedimento:** Frequência inicial entre 85–95 Hz. O participante ajusta até alcançar seu limite máximo percebido de forma confortável.
+- **Controles idênticos à Tarefa A.**
+
+---
+
+## Tarefa D - Comparação Pareada (Discriminação Simultânea)
+
+- **Objetivo:** Discriminar qual dos dois motores vibra com maior frequência ou se são iguais.
+- **Procedimento:** Dois motores (motor A e motor B) vibram simultaneamente com frequências controladas. O participante deve indicar:
+  - Se o motor A vibra mais (A > B)
+  - Se o motor B vibra mais (B > A)
+  - Se ambos vibram de forma igual (A = B)
+- **Botões utilizados:**
+  - `botaoAMaior` (porta 43): A > B
+  - `botaoBMaior` (porta 39): B > A
+  - `botaoIgual`   (porta 35): A = B
+- **Variações testadas:**
+  - Diferenças de 5 Hz, 10 Hz e 15 Hz
+  - Pares embaralhados e balanceados (10 de cada tipo)
+- **Saída serial:** Frequências aplicadas, botão pressionado, tempo de resposta e acerto/incorreto.
+
+---
+
+## Estrutura de Execução
+
+O experimento executa as tarefas em sequência:
+1. Tarefa A – 3 ensaios
+2. Tarefa B – 3 ensaios
+3. Tarefa C – 3 ensaios
+4. Tarefa D – 30 ensaios (10 A>B, 10 B>A, 10 A=B)
+
+Cada tarefa inclui pausas controladas por botão antes de iniciar o próximo ensaio.
+
+---
+
+## Observações Finais
+
+- O sistema utiliza um LED indicador durante a vibração ativa.
+- Os motores são alimentados por fonte externa de 5V com corrente suficiente para suportar picos de até 0,9 A (8 motores x 90 mA).
+- Frequência máxima segura: até 150 Hz (limite físico do motor de 9000 RPM).
