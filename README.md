@@ -1,4 +1,4 @@
-# Vibrotactile Device for Psychophysical Experiments
+# Vibrotactile Device for Experiments
 
 This repository contains the hardware design, algorithms, and scripts developed for the vibrotactile device described in **Chapter 4** of the doctoral thesis *Design Practices for Encoding Abstract Data Using Vibrotactile Patterns*.  
 The device was conceived as an experimental platform to support controlled user studies on vibrotactile perception, including thresholds, scales, and data encoding tasks.
