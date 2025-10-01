@@ -26,15 +26,6 @@ The vibrotactile device provides:
   - Arduino IDE (>= 2.0) or PlatformIO
 ---
 
-## 🚀 Getting Started
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/vibrotactile-device.git
-2.Open the firmware/ directory in Arduino IDE.
-3.Upload the code to your microcontroller.
-4.Assemble the hardware following the diagrams in hardware/.
-5.Run the example experiment located in experiments/.
-
 📜 License
 This project is released under the MIT License. See LICENSE for details.
 
