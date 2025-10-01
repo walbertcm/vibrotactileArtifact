@@ -1,7 +1,7 @@
 # Vibrotactile Device for Experiments
 
 This repository contains the hardware design, algorithms, and scripts developed for the vibrotactile device described in **Chapter 4** of the doctoral thesis *Design Practices for Encoding Abstract Data Using Vibrotactile Patterns*.  
-The device was conceived as an experimental platform to support controlled user studies on vibrotactile perception, including thresholds, scales, and data encoding tasks.
+The device was conceived as an experimental platform to support controlled user studies on vibrotactile perception, including limits, scales, and data encoding tasks.
 
 ---
 
@@ -18,28 +18,12 @@ The vibrotactile device provides:
 ## 📂 Repository Structure
 
 ## ⚙️ Requirements
-- **Microcontroller:** Arduino Mega 2560 or ESP32 (depending on the experiment)
+- **Microcontroller:** ESP32
 - **Actuators:** ERM vibration motors (tested up to 150 Hz)
 - **Power supply:** 5V regulated
 - **Additional components:** Buttons, resistors, breadboard/PCB
 - **Software:** 
   - Arduino IDE (>= 2.0) or PlatformIO
-  - Python 3.x (for data processing scripts)
-
----
-## 🔌 System Architecture
-
-+-------------------+       +-------------------+       +------------------+
-|   Computer (PC)   | <---> |   Microcontroller | --->  | Motor Driver(s)  |
-|   Data Logging    |  USB  | (Arduino / ESP32) | PWM   | + Vibration      |
-+-------------------+       +-------------------+       |   Motors         |
-             ^                     |   ^                +------------------+
-             |                     |   |
-             |     Serial Data     |   | Button Inputs
-             |                     |   |
-             +---------------------+   +----------------+
-                                      User Response Buttons
-
 ---
 
 ## 🚀 Getting Started
